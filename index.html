@@ -89,13 +89,127 @@ index.html
   </p>
 </details>
 
-<div class="card">
-  <h2>Day 2｜蓝图不是代码</h2>
+<details class="card">
+  <summary><strong>▶ Day 2｜蓝图不是代码</strong></summary>
+
+  <p><strong>Day 2 的目标：</strong><br>
+  👉 让 UE “听懂你想让它做什么”</p>
+
+  <h3>🧠 先把恐惧拆掉</h3>
+  <p>
+    你看到“蓝图（Blueprint）”这两个字，  
+    可能会下意识以为：  
+    <strong>是不是要写代码？</strong>
+  </p>
+
+  <p>
+    答案是：<strong>不用。</strong><br>
+    蓝图更像是：
+  </p>
+
   <ul>
-    <li>事件 → 执行 → 结果</li>
-    <li>用 Trigger Box 控制一扇门</li>
+    <li>电路接线图</li>
+    <li>流程图</li>
+    <li>“如果发生 A，就做 B”</li>
   </ul>
-</div>
+
+  <h3>🧩 蓝图的核心结构（非常重要）</h3>
+
+  <p>所有蓝图，本质上只有三件事：</p>
+
+  <ol>
+    <li><strong>事件（Event）</strong>：发生了什么</li>
+    <li><strong>执行（Do）</strong>：我决定做什么</li>
+    <li><strong>结果（Result）</strong>：世界发生变化</li>
+  </ol>
+
+  <p>
+    你以后看到再复杂的蓝图，  
+    都可以强行套回这三步。
+  </p>
+
+  <h3>🖼️ 图示 1｜最基础的蓝图逻辑</h3>
+
+  <div class="card">
+    <p><strong>示意图（逻辑）：</strong></p>
+    <p>
+      ▶ Event Begin Play<br>
+      ⬇️<br>
+      ▶ Print String（Hello）
+    </p>
+    <p style="opacity:.7;">
+      （当游戏开始 → 屏幕显示一句话）
+    </p>
+  </div>
+
+  <p>
+    即使你现在没打开 UE，  
+    也可以这样理解：
+  </p>
+
+  <blockquote>
+    游戏一开始 → 我让它说一句话
+  </blockquote>
+
+  <h3>🚪 实战例子：用 Trigger 控制一扇门</h3>
+
+  <p>
+    我们今天不会真的把门做完，  
+    但你要<strong>在脑子里理解流程</strong>。
+  </p>
+
+  <h4>🧠 场景设定</h4>
+  <ul>
+    <li>地上有一个 Trigger Box（感应区域）</li>
+    <li>门默认是关着的</li>
+    <li>人走进来 → 门打开</li>
+  </ul>
+
+  <h4>🖼️ 图示 2｜逻辑拆解</h4>
+
+  <div class="card">
+    <p>
+      ▶ OnActorBeginOverlap（人进来了）<br>
+      ⬇️<br>
+      ▶ Open Door（执行）<br>
+      ⬇️<br>
+      ▶ 门移动 / 播放动画（结果）
+    </p>
+  </div>
+
+  <p>
+    这三步，  
+    就是你未来做<strong>所有机关</strong>的底层逻辑。
+  </p>
+
+  <h3>🧯 新人最常见的 3 个误区</h3>
+
+  <ul>
+    <li><strong>❌ 我是不是要学 C++？</strong><br>不用，现在完全不用。</li>
+    <li><strong>❌ 蓝图节点我都不认识</strong><br>正常，今天只看“线怎么走”。</li>
+    <li><strong>❌ 我连门都还没动画</strong><br>没关系，逻辑先于表现。</li>
+  </ul>
+
+  <h3>🏁 Day 2 合格线</h3>
+
+  <p>
+    只要你能在脑子里说出一句完整的话：
+  </p>
+
+  <blockquote>
+    “当角色走进区域，我就让门做点什么。”
+  </blockquote>
+
+  <p>
+    👉 <strong>Day 2 完成。</strong>
+  </p>
+
+  <p style="opacity:.7;">
+    明天（Day 3）：<br>
+    Timeline、动画、门为什么会“抽一下”
+  </p>
+</details>
+
 
 <div class="card">
   <h2>Day 3｜动画 & 交互</h2>
