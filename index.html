@@ -4,6 +4,7 @@ index.html
 <head>
   <meta charset="UTF-8" />
   <title>新人入坑 UE 的第一周路线图</title>
+
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont;
@@ -12,9 +13,11 @@ index.html
       padding: 40px;
       line-height: 1.7;
     }
-    h1, h2 {
+
+    h1, h2, h3 {
       color: #93c5fd;
     }
+
     .card {
       background: #020617;
       border-radius: 12px;
@@ -22,11 +25,25 @@ index.html
       margin-bottom: 24px;
       box-shadow: 0 10px 30px rgba(0,0,0,.3);
     }
-    ul {
+
+    ul, ol {
       padding-left: 20px;
+    }
+
+    /* ✅ 内折页样式 */
+    details summary {
+      cursor: pointer;
+      font-size: 1.1em;
+      margin-bottom: 12px;
+      user-select: none;
+    }
+
+    details[open] summary {
+      color: #60a5fa;
     }
   </style>
 </head>
+
 <body>
 
 <h1>📦 新人入坑 UE 的第一周路线图</h1>
@@ -39,18 +56,17 @@ index.html
 
   <h3>🧠 先说一句人话</h3>
   <p>
-    如果你现在看见 UE 编辑器就头大、  
+    如果你现在看见 UE 编辑器就头大，  
     不知道什么是关卡、Actor、蓝图——  
     <strong>完全正常。</strong>
   </p>
 
   <p>
-    UE 是给团队用的工业工具，<br>
+    UE 是给团队用的工业工具，  
     今天不要求你“会做东西”，只要求你<strong>敢点</strong>。
   </p>
 
   <h3>🧩 今天只记住 3 个名字</h3>
-
   <ul>
     <li><strong>项目（Project）</strong>：一个游戏 = 一个文件夹</li>
     <li><strong>关卡（Level）</strong>：一个场景</li>
@@ -58,26 +74,20 @@ index.html
   </ul>
 
   <h3>🎮 实际操作</h3>
-
   <ol>
     <li>打开 Unreal Engine</li>
     <li>打开任意一个项目（示例 / 空白都行）</li>
     <li>什么都别改，直接点 ▶ Play</li>
   </ol>
 
-  <p>
-    只要画面能动、能控制视角，<br>
-    <strong>🎉 Day 1 完成。</strong>
-  </p>
+  <p><strong>🎉 Day 1 完成。</strong></p>
 
   <h3>🏁 Day 1 合格线</h3>
   <p>
-    你能对自己说一句：<br>
+    你能对自己说一句：  
     “我知道 UE 是干嘛的，我敢点 Play。”
   </p>
-
 </details>
-
 
 <div class="card">
   <h2>Day 2｜蓝图不是代码</h2>
@@ -96,7 +106,7 @@ index.html
 </div>
 
 <div class="card">
-  <h2>Day 4-7｜开始像个 UE 人</h2>
+  <h2>Day 4–7｜开始像个 UE 人</h2>
   <ul>
     <li>拆分蓝图职责</li>
     <li>避免关卡蓝图过重</li>
