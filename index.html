@@ -90,125 +90,143 @@ index.html
 </details>
 
 <details class="card">
-  <summary><strong>▶ Day 2｜蓝图不是代码</strong></summary>
+  <summary><strong>▶ Day 2｜蓝图不是代码（从 0 做一扇自动门）</strong></summary>
 
   <p><strong>Day 2 的目标：</strong><br>
-  👉 让 UE “听懂你想让它做什么”</p>
+  👉 看懂蓝图在“干嘛”，并且真的做出一扇<strong>能开、能关、不抽搐</strong>的门</p>
 
-  <h3>🧠 先把恐惧拆掉</h3>
+  <h3>🧠 先说一句最重要的人话</h3>
   <p>
-    你看到“蓝图（Blueprint）”这两个字，  
-    可能会下意识以为：  
-    <strong>是不是要写代码？</strong>
+    蓝图不是“写程序”，而是：
   </p>
-
-  <p>
-    答案是：<strong>不用。</strong><br>
-    蓝图更像是：
-  </p>
-
   <ul>
-    <li>电路接线图</li>
-    <li>流程图</li>
-    <li>“如果发生 A，就做 B”</li>
+    <li>什么时候发生事？</li>
+    <li>发生后要做什么？</li>
+    <li>这个东西属于谁？</li>
   </ul>
+  <p>
+    今天你只需要理解一句话：<br>
+    <strong>「门的逻辑，应该写在门自己身上。」</strong>
+  </p>
 
-  <h3>🧩 蓝图的核心结构（非常重要）</h3>
-
-  <p>所有蓝图，本质上只有三件事：</p>
-
+  <h3>📦 Step 1｜新建一个“门蓝图”</h3>
   <ol>
-    <li><strong>事件（Event）</strong>：发生了什么</li>
-    <li><strong>执行（Do）</strong>：我决定做什么</li>
-    <li><strong>结果（Result）</strong>：世界发生变化</li>
+    <li>在 Content Drawer 空白处右键</li>
+    <li>Blueprint Class → Actor</li>
+    <li>命名为 <strong>BP_Door</strong></li>
+    <li>双击打开</li>
+  </ol>
+  <p>
+    👉 这是你的第一条“UE 习惯”：<br>
+    <strong>会动、会响应的东西，基本都该是 Actor 蓝图。</strong>
+  </p>
+
+  <h3>🧱 Step 2｜给门加组件（不加逻辑）</h3>
+  <p>在 Components 面板里：</p>
+  <ul>
+    <li>➕ Static Mesh（门本体）</li>
+    <li>➕ Box Collision（触发区域）</li>
+  </ul>
+  <p>
+    📌 注意：<br>
+    Box 要<strong>比门大</strong>，代表“人靠近门”
+  </p>
+
+  <p><em>（这里你可以以后放一张：门 + Box 的截图）</em></p>
+
+  <h3>⚡ Step 3｜第一个事件：人走进来了</h3>
+  <p>
+    切到 Event Graph：
+  </p>
+  <ol>
+    <li>选中 Box Collision</li>
+    <li>右键 → Add Event → On Component Begin Overlap</li>
   </ol>
 
   <p>
-    你以后看到再复杂的蓝图，  
-    都可以强行套回这三步。
+    这句话的意思是：<br>
+    <strong>“有东西走进这个区域了”</strong>
   </p>
 
-  <h3>🖼️ 图示 1｜最基础的蓝图逻辑</h3>
-
-  <div class="card">
-    <p><strong>示意图（逻辑）：</strong></p>
-    <p>
-      ▶ Event Begin Play<br>
-      ⬇️<br>
-      ▶ Print String（Hello）
-    </p>
-    <p style="opacity:.7;">
-      （当游戏开始 → 屏幕显示一句话）
-    </p>
-  </div>
+  <h3>🧩 Step 4｜不要直接动门（新手最容易错）</h3>
+  <p>
+    ❌ 错误做法：<br>
+    On Overlap → Set Location（立刻改位置）
+  </p>
+  <p>
+    结果通常是：<br>
+    门瞬移 / 抽搐 / 看起来像坏掉
+  </p>
 
   <p>
-    即使你现在没打开 UE，  
-    也可以这样理解：
+    ✅ 正确做法：<br>
+    <strong>用 Timeline 控制“变化过程”</strong>
   </p>
 
-  <blockquote>
-    游戏一开始 → 我让它说一句话
-  </blockquote>
-
-  <h3>🚪 实战例子：用 Trigger 控制一扇门</h3>
+  <h3>⏱️ Step 5｜Timeline：门为什么不抽搐</h3>
+  <ol>
+    <li>在蓝图中右键 → Add Timeline</li>
+    <li>命名为 <strong>DoorTimeline</strong></li>
+    <li>打开 Timeline</li>
+    <li>添加一个 Float Track（0 → 1）</li>
+  </ol>
 
   <p>
-    我们今天不会真的把门做完，  
-    但你要<strong>在脑子里理解流程</strong>。
+    📈 0 = 门关着<br>
+    📈 1 = 门完全打开
   </p>
 
-  <h4>🧠 场景设定</h4>
+  <p><em>（这里非常适合放一张 Timeline 曲线截图）</em></p>
+
+  <h3>🚪 Step 6｜用 Timeline 推动门移动</h3>
+  <p>
+    在 Timeline 的 Update 引脚：
+  </p>
   <ul>
-    <li>地上有一个 Trigger Box（感应区域）</li>
-    <li>门默认是关着的</li>
-    <li>人走进来 → 门打开</li>
+    <li>使用 Lerp（Vector）</li>
+    <li>A = 关门位置</li>
+    <li>B = 开门位置</li>
+    <li>Alpha = Timeline 的输出</li>
   </ul>
 
-  <h4>🖼️ 图示 2｜逻辑拆解</h4>
-
-  <div class="card">
-    <p>
-      ▶ OnActorBeginOverlap（人进来了）<br>
-      ⬇️<br>
-      ▶ Open Door（执行）<br>
-      ⬇️<br>
-      ▶ 门移动 / 播放动画（结果）
-    </p>
-  </div>
-
   <p>
-    这三步，  
-    就是你未来做<strong>所有机关</strong>的底层逻辑。
+    👉 Timeline 不“控制门”，<br>
+    它只负责告诉你：<br>
+    <strong>“现在是 0.3 / 0.7 / 1”</strong>
   </p>
 
-  <h3>🧯 新人最常见的 3 个误区</h3>
+  <h3>🔁 Step 7｜关门怎么办？</h3>
+  <p>
+    再加一个事件：
+  </p>
+  <ol>
+    <li>Box Collision → On Component End Overlap</li>
+    <li>连接到 Timeline 的 <strong>Reverse</strong></li>
+  </ol>
 
+  <p>
+    👉 人走近 → Play<br>
+    👉 人走远 → Reverse
+  </p>
+
+  <h3>⚠️ 新人 100% 会踩的坑</h3>
   <ul>
-    <li><strong>❌ 我是不是要学 C++？</strong><br>不用，现在完全不用。</li>
-    <li><strong>❌ 蓝图节点我都不认识</strong><br>正常，今天只看“线怎么走”。</li>
-    <li><strong>❌ 我连门都还没动画</strong><br>没关系，逻辑先于表现。</li>
+    <li>❌ 用关卡蓝图控制门</li>
+    <li>❌ 每一帧 Set Location</li>
+    <li>❌ 门和触发器不是一个 Actor</li>
   </ul>
 
   <h3>🏁 Day 2 合格线</h3>
-
   <p>
-    只要你能在脑子里说出一句完整的话：
+    你不需要记住所有节点名字，<br>
+    只要你能说出这句话：
   </p>
+  <p><strong>
+    “门自己知道什么时候该开，该怎么动。”
+  </strong></p>
 
-  <blockquote>
-    “当角色走进区域，我就让门做点什么。”
-  </blockquote>
-
-  <p>
-    👉 <strong>Day 2 完成。</strong>
-  </p>
-
-  <p style="opacity:.7;">
-    明天（Day 3）：<br>
-    Timeline、动画、门为什么会“抽一下”
-  </p>
 </details>
+
 
 
 <div class="card">
